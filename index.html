@@ -1,0 +1,1541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yashvi — Communications & Campaign Strategist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0D0D0D;
+      --paper: #F5F0EB;
+      --accent: #C8392B;
+      --muted: #6B6560;
+      --rule: #D4CFC9;
+      --white: #FFFFFF;
+      --display: 'Playfair Display', Georgia, serif;
+      --body: 'DM Sans', system-ui, sans-serif;
+      --mono: 'DM Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--body);
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+      background: var(--paper);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-logo {
+      font-family: var(--display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* PAGE ROUTER */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 81px;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 48px 80px 48px;
+      border-right: 1px solid var(--rule);
+    }
+
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hero-name {
+      font-family: var(--display);
+      font-size: clamp(4rem, 8vw, 7rem);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 32px;
+    }
+
+    .hero-name span {
+      display: block;
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 440px;
+      line-height: 1.75;
+      margin-bottom: 48px;
+      font-weight: 300;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 14px 32px;
+      background: var(--ink);
+      color: var(--white);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover { background: var(--accent); }
+
+    .btn-outline {
+      display: inline-block;
+      padding: 14px 32px;
+      background: transparent;
+      color: var(--ink);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1.5px solid var(--ink);
+      transition: all 0.2s;
+    }
+
+    .btn-outline:hover { background: var(--ink); color: var(--white); }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 80px 48px;
+      background: var(--ink);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .hero-stat {
+      padding: 36px 28px;
+      background: var(--ink);
+    }
+
+    .hero-stat-number {
+      font-family: var(--display);
+      font-size: 3.2rem;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .hero-stat-number sup {
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    .hero-stat-label {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-family: var(--mono);
+    }
+
+    .hero-accent-line {
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--accent);
+    }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 32px;
+      left: 48px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .scroll-line {
+      width: 40px;
+      height: 1px;
+      background: rgba(255,255,255,0.2);
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 100px 48px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: var(--display);
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 48px;
+      max-width: 640px;
+    }
+
+    /* ABOUT PAGE */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .about-text p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 24px;
+      font-weight: 300;
+    }
+
+    .about-text p strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .about-pull-quote {
+      font-family: var(--display);
+      font-size: 1.55rem;
+      font-style: italic;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.4;
+      border-left: 3px solid var(--accent);
+      padding-left: 28px;
+      margin: 40px 0;
+    }
+
+    .edu-block {
+      margin-top: 0;
+    }
+
+    .edu-item {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .edu-item:last-child { border-bottom: none; }
+
+    .edu-year {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+
+    .edu-degree {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .edu-institution {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .edu-result {
+      display: inline-block;
+      margin-top: 8px;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      background: var(--ink);
+      color: var(--white);
+      padding: 3px 10px;
+    }
+
+    /* WORK PAGE */
+    .work-intro {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 60px;
+      margin-bottom: 80px;
+    }
+
+    .work-intro p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    .work-intro-right {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .stat-pill {
+      display: flex;
+      flex-direction: column;
+      padding: 20px 24px;
+      border: 1px solid var(--rule);
+    }
+
+    .stat-pill .num {
+      font-family: var(--display);
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--ink);
+    }
+
+    .stat-pill .lbl {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* EXPERIENCE CARDS */
+    .exp-entry {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 48px;
+      padding: 60px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .exp-entry:last-child { border-bottom: none; }
+
+    .exp-meta {
+      padding-top: 4px;
+    }
+
+    .exp-company {
+      font-family: var(--display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .exp-role {
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-weight: 400;
+      margin-bottom: 12px;
+    }
+
+    .exp-period {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+    }
+
+    .exp-badge {
+      display: inline-block;
+      margin-top: 12px;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: var(--accent);
+      color: var(--white);
+      padding: 3px 10px;
+    }
+
+    .exp-content h3 {
+      font-family: var(--display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .exp-content p {
+      font-size: 0.98rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 16px;
+      font-weight: 300;
+    }
+
+    .exp-content ul {
+      list-style: none;
+      margin: 20px 0;
+    }
+
+    .exp-content ul li {
+      font-size: 0.95rem;
+      color: var(--muted);
+      padding: 10px 0;
+      border-top: 1px solid var(--rule);
+      padding-left: 18px;
+      position: relative;
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    .exp-content ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 20px;
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+    }
+
+    .exp-content ul li strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .client-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .client-tag {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.04em;
+      padding: 5px 12px;
+      border: 1px solid var(--rule);
+      color: var(--muted);
+    }
+
+    /* IPO PROCESS */
+    .ipo-section {
+      background: var(--ink);
+      color: var(--white);
+      padding: 100px 48px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .ipo-section .section-title {
+      color: var(--white);
+    }
+
+    .ipo-section .section-label {
+      color: var(--accent);
+    }
+
+    .ipo-intro {
+      max-width: 640px;
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.8;
+      font-weight: 300;
+      margin-bottom: 64px;
+    }
+
+    .ipo-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .ipo-step {
+      background: var(--ink);
+      padding: 36px 28px;
+      position: relative;
+    }
+
+    .ipo-step-num {
+      font-family: var(--display);
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: rgba(255,255,255,0.06);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .ipo-step-title {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .ipo-step-desc {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.65;
+      font-family: var(--mono);
+    }
+
+    .ipo-step.highlight {
+      border-left: 3px solid var(--accent);
+    }
+
+    .ipo-clients-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 64px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      align-items: center;
+    }
+
+    .ipo-clients-label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-right: 8px;
+    }
+
+    .ipo-client-name {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.6);
+      font-weight: 300;
+      padding: 6px 16px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* FICCI PAGE */
+    .ficci-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--rule);
+      margin-bottom: 60px;
+    }
+
+    .ficci-card {
+      background: var(--paper);
+      padding: 48px 40px;
+    }
+
+    .ficci-card-num {
+      font-family: var(--display);
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .ficci-card-num span {
+      font-size: 1.5rem;
+    }
+
+    .ficci-card-label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .ficci-card-desc {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .ficci-timeline {
+      position: relative;
+      padding-left: 28px;
+    }
+
+    .ficci-timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px; bottom: 8px;
+      width: 1px;
+      background: var(--rule);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-bottom: 40px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -32px;
+      top: 8px;
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+    }
+
+    .timeline-item-title {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .timeline-item-body {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.75;
+      font-weight: 300;
+    }
+
+    .timeline-item-body strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    /* ACHIEVEMENTS */
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--rule);
+    }
+
+    .achievement-card {
+      background: var(--paper);
+      padding: 48px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .achievement-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 3px;
+      background: transparent;
+      transition: background 0.3s;
+    }
+
+    .achievement-card:hover::after { background: var(--accent); }
+
+    .achievement-icon {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .achievement-title {
+      font-family: var(--display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 12px;
+      line-height: 1.25;
+    }
+
+    .achievement-desc {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* SKILLS */
+    .skills-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+    }
+
+    .skill-group-title {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .skill-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .skill-name {
+      font-size: 0.95rem;
+      color: var(--ink);
+      font-weight: 400;
+    }
+
+    .skill-bar {
+      width: 120px;
+      height: 2px;
+      background: var(--rule);
+      position: relative;
+    }
+
+    .skill-bar-fill {
+      position: absolute;
+      left: 0; top: 0;
+      height: 100%;
+      background: var(--ink);
+    }
+
+    /* CONTACT */
+    .contact-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contact-left p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.8;
+      font-weight: 300;
+      margin-bottom: 32px;
+    }
+
+    .contact-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--rule);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .contact-item:hover .contact-item-value { color: var(--accent); }
+
+    .contact-item-label {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      width: 80px;
+      flex-shrink: 0;
+    }
+
+    .contact-item-value {
+      font-size: 0.98rem;
+      color: var(--ink);
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+
+    .contact-right {
+      background: var(--ink);
+      padding: 56px 48px;
+    }
+
+    .contact-right h3 {
+      font-family: var(--display);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .contact-right p {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 40px;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .ref-item {
+      padding: 24px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .ref-item:last-child { border-bottom: none; }
+
+    .ref-name {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .ref-role {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .ref-contact {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* FOOTER */
+    footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 32px 48px;
+      border-top: 1px solid var(--rule);
+    }
+
+    .footer-name {
+      font-family: var(--display);
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .footer-note {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* MOBILE */
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .nav-links { gap: 20px; }
+      .nav-links a { font-size: 0.78rem; }
+
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 60px 24px 48px; }
+      .hero-right { padding: 48px 24px; }
+      .hero-stat-grid { grid-template-columns: 1fr 1fr; }
+
+      section { padding: 64px 24px; }
+
+      .about-grid,
+      .work-intro,
+      .contact-section,
+      .skills-layout,
+      .ficci-grid,
+      .achievements-grid,
+      .ipo-steps { grid-template-columns: 1fr; }
+
+      .exp-entry { grid-template-columns: 1fr; gap: 20px; }
+      .ipo-section { padding: 64px 24px; }
+      footer { padding: 24px; flex-direction: column; gap: 12px; text-align: center; }
+    }
+
+    /* TRANSITIONS */
+    .page { animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .page { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#" onclick="showPage('home'); return false;">Yashvi</a>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showPage('home'); return false;">Home</a></li>
+    <li><a href="#" onclick="showPage('about'); return false;">About</a></li>
+    <li><a href="#" onclick="showPage('work'); return false;">Work</a></li>
+    <li><a href="#" onclick="showPage('ipo'); return false;">IPO Work</a></li>
+    <li><a href="#" onclick="showPage('ficci'); return false;">FICCI</a></li>
+    <li><a href="#" onclick="showPage('contact'); return false;">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ==================== HOME ==================== -->
+<div id="page-home" class="page active">
+
+  <div class="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Communications &amp; Campaign Strategist</p>
+      <h1 class="hero-name">Yashvi<span>Rajput</span></h1>
+      <p class="hero-desc">
+        From IPO regulatory mandates to ministerial ceremonies at FICCI, I build campaigns that work under pressure, on deadline, and at scale.
+      </p>
+      <div class="hero-ctas">
+        <button class="btn-primary" onclick="showPage('work')">See My Work</button>
+        <button class="btn-outline" onclick="showPage('contact')">Get in Touch</button>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-accent-line"></div>
+      <div class="hero-stat-grid">
+        <div class="hero-stat">
+          <div class="hero-stat-number">13<sup>+</sup></div>
+          <div class="hero-stat-label">Marquee Brands</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-number">10<sup>+</sup></div>
+          <div class="hero-stat-label">IPO Mandates</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-number">16</div>
+          <div class="hero-stat-label">FICCI Roundtables</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-number">22</div>
+          <div class="hero-stat-label">Years Old</div>
+        </div>
+      </div>
+      <div class="hero-scroll-hint">
+        <span class="scroll-line"></span>
+        Scroll to explore
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick overview strip -->
+  <section style="padding: 80px 48px; background: var(--white);">
+    <p class="section-label">What I Do</p>
+    <h2 class="section-title">Where Communication Meets Execution</h2>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule);">
+      <div style="background: var(--white); padding: 40px 32px;">
+        <div style="font-family: var(--mono); font-size: 0.68rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px;">01</div>
+        <h3 style="font-family: var(--display); font-size: 1.3rem; font-weight: 700; margin-bottom: 12px;">IPO Campaign Management</h3>
+        <p style="font-size: 0.92rem; color: var(--muted); line-height: 1.75; font-weight: 300;">End-to-end campaign execution for public market listings. SEBI, NSE, and BSE compliant. Zero-error delivery on regulatory timelines.</p>
+      </div>
+      <div style="background: var(--white); padding: 40px 32px;">
+        <div style="font-family: var(--mono); font-size: 0.68rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px;">02</div>
+        <h3 style="font-family: var(--display); font-size: 1.3rem; font-weight: 700; margin-bottom: 12px;">Brand Campaign Strategy</h3>
+        <p style="font-size: 0.92rem; color: var(--muted); line-height: 1.75; font-weight: 300;">Corporate briefs, client servicing, and campaign execution across digital and offline touchpoints for 13+ brands in Ed-Tech, Fintech, and Energy.</p>
+      </div>
+      <div style="background: var(--white); padding: 40px 32px;">
+        <div style="font-family: var(--mono); font-size: 0.68rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px;">03</div>
+        <h3 style="font-family: var(--display); font-size: 1.3rem; font-weight: 700; margin-bottom: 12px;">High-Stakes Event Management</h3>
+        <p style="font-size: 0.92rem; color: var(--muted); line-height: 1.75; font-weight: 300;">Organised Wings India 2024 as the youngest FICCI organiser in Asia, managing 200+ speakers and ministerial inaugurations from 7 countries.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Selected clients -->
+  <section style="padding: 60px 48px; background: var(--paper);">
+    <p class="section-label">Selected Clients</p>
+    <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px;">
+      <span class="client-tag">Pine Labs</span>
+      <span class="client-tag">Groww</span>
+      <span class="client-tag">PhysicsWallah</span>
+      <span class="client-tag">Lenskart</span>
+      <span class="client-tag">Canara HSBC Life</span>
+      <span class="client-tag">Saatvik Solar</span>
+      <span class="client-tag">Urban Company</span>
+      <span class="client-tag">Shiprocket</span>
+      <span class="client-tag">Kent RO</span>
+      <span class="client-tag">Hero Fincorp</span>
+      <span class="client-tag">Orient Cables</span>
+      <span class="client-tag">A One Steel</span>
+      <span class="client-tag">Ecom Express</span>
+    </div>
+  </section>
+
+</div>
+
+<!-- ==================== ABOUT ==================== -->
+<div id="page-about" class="page">
+  <section style="padding-top: 120px;">
+    <p class="section-label">About Me</p>
+    <h2 class="section-title">I communicate for a living. I do it well.</h2>
+
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          An average person speaks <strong>16,000 words a day.</strong> I've always spoken more, and I've spent the last few years making sure those words do something useful.
+        </p>
+        <p>
+          My career started early and moved fast. At 19, I became one of the youngest organisers at FICCI, managing high-profile events at a national scale while most people were still in college. At 20, I started my corporate career at <strong>Adfactors Advertising</strong>, working on IPO mandates for some of India's most talked-about public listings.
+        </p>
+        <p>
+          I've handled client briefs for 13+ brands, written talking pointers for union ministers, coordinated inaugural ceremonies with ambassadors from 6 nations, and managed regulatory ad deliverables for listed companies. Every role has been different. The through-line has been communication under pressure.
+        </p>
+        <div class="about-pull-quote">
+          "Stories help people connect to everything. I believe that more with every project I work on."
+        </div>
+        <p>
+          Outside of campaigns and briefs, I write. I published an original travel magazine in my final semester of graduation and built its social media presence from scratch. That instinct, to create, distribute, and own a story, shows up in everything I do professionally.
+        </p>
+        <p>
+          I'm 22, based in India, and I hold a <strong>PGDM in PR and Advertising</strong> from Banasthali Vidyapeeth (204/240) alongside a <strong>BA in Journalism and Mass Communication</strong> (9.3 CGPA). I was awarded the <strong>Best Journalist at Sansad National Youth Parliament 2021</strong> from a pool of 1,000+ participants.
+        </p>
+      </div>
+
+      <div>
+        <div style="font-family: var(--mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid var(--rule);">Education</div>
+        <div class="edu-block">
+          <div class="edu-item">
+            <div class="edu-year">2023 — 2024</div>
+            <div class="edu-degree">PGDM — PR and Advertising</div>
+            <div class="edu-institution">Banasthali Vidyapeeth, Jaipur</div>
+            <span class="edu-result">204 / 240</span>
+          </div>
+          <div class="edu-item">
+            <div class="edu-year">2021 — 2024</div>
+            <div class="edu-degree">BA — Journalism and Mass Communication</div>
+            <div class="edu-institution">Banasthali Vidyapeeth, Jaipur</div>
+            <span class="edu-result">9.3 CGPA</span>
+          </div>
+          <div class="edu-item">
+            <div class="edu-year">2020 — 2021</div>
+            <div class="edu-degree">CBSE Class XII</div>
+            <div class="edu-institution">Colonel's Central Academy, Gurgaon</div>
+            <span class="edu-result">94%</span>
+          </div>
+          <div class="edu-item">
+            <div class="edu-year">2018 — 2019</div>
+            <div class="edu-degree">CBSE Class X</div>
+            <div class="edu-institution">Our Lady of Fatima Convent, Gurgaon</div>
+            <span class="edu-result">80%</span>
+          </div>
+        </div>
+
+        <div style="margin-top: 48px; font-family: var(--mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid var(--rule);">Skills at a Glance</div>
+        <div>
+          <div class="skill-item"><span class="skill-name">Client Servicing</span><div class="skill-bar"><div class="skill-bar-fill" style="width:95%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Campaign Strategy</span><div class="skill-bar"><div class="skill-bar-fill" style="width:90%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Stakeholder Management</span><div class="skill-bar"><div class="skill-bar-fill" style="width:88%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">IPO / Regulatory Comms</span><div class="skill-bar"><div class="skill-bar-fill" style="width:85%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Content Strategy</span><div class="skill-bar"><div class="skill-bar-fill" style="width:88%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Event Management</span><div class="skill-bar"><div class="skill-bar-fill" style="width:82%"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ==================== WORK ==================== -->
+<div id="page-work" class="page">
+  <section style="padding-top: 120px;">
+    <p class="section-label">Work Experience</p>
+    <h2 class="section-title">3 Years. 3 Very Different Arenas.</h2>
+
+    <div class="work-intro">
+      <p>
+        My professional experience spans regulatory advertising, brand campaign management, ministerial-level event production, and social-first content strategy. Each role required a different skill set. All of them required clear communication and the ability to execute without hand-holding.
+      </p>
+      <div class="work-intro-right">
+        <div class="stat-pill"><span class="num">1.7<span style="font-size:1.4rem">yr</span></span><span class="lbl">At Adfactors</span></div>
+        <div class="stat-pill"><span class="num">30<sup style="font-size:1.2rem">+</sup></span><span class="lbl">Corporate Briefs</span></div>
+        <div class="stat-pill"><span class="num">5</span><span class="lbl">Organisations</span></div>
+      </div>
+    </div>
+
+    <!-- Adfactors -->
+    <div class="exp-entry">
+      <div class="exp-meta">
+        <div class="exp-company">Adfactors Advertising</div>
+        <div class="exp-role">Client Servicing</div>
+        <div class="exp-period">Nov 2024 — Present</div>
+        <span class="exp-badge">Current Role</span>
+      </div>
+      <div class="exp-content">
+        <h3>Brand Campaigns, IPO Mandates, and 13+ Clients</h3>
+        <p>
+          Adfactors is one of India's leading advertising agencies. I manage end-to-end brand solutions and client relationships across sectors including Ed-Tech, Fintech, Solar Energy, Logistics, and Consumer Goods. My work sits between brief and execution, making sure what the client wants is what the creative team delivers, on time and on brand.
+        </p>
+        <ul>
+          <li><strong>Primary POC for PhysicsWallah and Lenskart</strong>, managing digital campaign requirements, briefs, timelines, and stakeholder feedback across both accounts.</li>
+          <li>Handled digital and corporate campaign briefs for <strong>Pine Labs and Canara HSBC Life Insurance</strong>, coordinating internal teams with client stakeholders.</li>
+          <li>Managed integrated campaigns for <strong>Kent RO and Urban Company</strong>, with a focus on culturally relevant, audience-first communication.</li>
+          <li>Executed B2B and corporate mandates for <strong>Saatvik Solar and Orient Cables</strong>, supporting brand-building and trade communication.</li>
+          <li>Coordinated multi-touchpoint campaigns for <strong>Shiprocket and Ecom Express</strong>, translating fast-moving briefs into sharp outputs with quick turnaround.</li>
+          <li>Supported brand visibility and ad campaigns for <strong>A One Steel, Neolite, Hero Fincorp, and Hero Future</strong>.</li>
+          <li>Acted as <strong>single POC for IPO-stage mandates</strong>, managing deliverables from DRHP filing through listing day under strict regulatory timelines.</li>
+        </ul>
+        <div class="client-tags">
+          <span class="client-tag">Pine Labs</span>
+          <span class="client-tag">PhysicsWallah</span>
+          <span class="client-tag">Lenskart</span>
+          <span class="client-tag">Groww</span>
+          <span class="client-tag">Canara HSBC Life</span>
+          <span class="client-tag">Urban Company</span>
+          <span class="client-tag">Saatvik Solar</span>
+          <span class="client-tag">Shiprocket</span>
+          <span class="client-tag">Kent RO</span>
+          <span class="client-tag">Hero Fincorp</span>
+          <span class="client-tag">Orient Cables</span>
+          <span class="client-tag">Ecom Express</span>
+          <span class="client-tag">A One Steel</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FICCI -->
+    <div class="exp-entry">
+      <div class="exp-meta">
+        <div class="exp-company">FICCI</div>
+        <div class="exp-role">Event Organiser</div>
+        <div class="exp-period">May 2023 — Jan 2024, Jan 2026</div>
+        <span class="exp-badge">Youngest in Asia</span>
+      </div>
+      <div class="exp-content">
+        <h3>Wings India 2024 and GCPMH: National-Scale Events at 19</h3>
+        <p>
+          I joined FICCI at 19 and became the youngest organiser of both GCPMH and Wings India in Asia. These were not junior roles. I managed roundtables, drafted government communications, and coordinated inaugural ceremonies with ministers and ambassadors from multiple countries.
+        </p>
+        <ul>
+          <li>Managed <strong>16 high-profile roundtables and sessions with 200+ speakers</strong> at Wings India 2024, which hosted 5,000+ business visitors and 12,000+ delegates.</li>
+          <li>The event featured a static display of <strong>25+ aircraft</strong>, including the debut of the Air India A350 and Boeing 777X in India.</li>
+          <li>Served as <strong>POC for international delegates and ministers</strong> for the duration of the event.</li>
+          <li>Drafted <strong>invitation papers and talking pointers</strong> for the Union Minister of Civil Aviation Jyotiraditya M. Scindia, the Joint Secretary of MOCA, and ministries spanning External Affairs, Finance, Travel, and Media.</li>
+          <li>Coordinated the inaugural ceremony attended by <strong>ministers from 7 countries and ambassadors from 6 nations</strong>, managing high-level protocol and cross-functional logistics under ministerial presence.</li>
+          <li>Conducted <strong>Boeing's BUILD by IITMIC event</strong>, engaging innovators and young aviation minds.</li>
+        </ul>
+        <div style="margin-top: 20px;">
+          <button class="btn-outline" style="font-size: 0.8rem; padding: 10px 24px;" onclick="showPage('ficci')">Full FICCI Story</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Aspirants -->
+    <div class="exp-entry">
+      <div class="exp-meta">
+        <div class="exp-company">Aspirants (A.I.I. Learning)</div>
+        <div class="exp-role">Social Media and Content</div>
+        <div class="exp-period">Dec 2022 — May 2023</div>
+      </div>
+      <div class="exp-content">
+        <h3>Building Brand Presence from the Ground Up</h3>
+        <p>
+          I built and executed a social-first content strategy that grew Aspirants' online presence across platforms. The work included platform-specific copy, digital assets, and brand narratives. My performance was personally appreciated by the CEO.
+        </p>
+      </div>
+    </div>
+
+    <!-- India News -->
+    <div class="exp-entry">
+      <div class="exp-meta">
+        <div class="exp-company">India News</div>
+        <div class="exp-role">Content and Video Editing</div>
+        <div class="exp-period">Jun 2022 — Aug 2022</div>
+      </div>
+      <div class="exp-content">
+        <h3>Journalism: Where It Started</h3>
+        <p>
+          Coordinated with reporters and producers to align video content with news scripts. Used editing software to produce video packages that improved viewer retention. This role taught me how to work fast, be precise, and read an audience.
+        </p>
+      </div>
+    </div>
+
+    <!-- Newsfasto -->
+    <div class="exp-entry">
+      <div class="exp-meta">
+        <div class="exp-company">Newsfasto</div>
+        <div class="exp-role">Content Writing</div>
+        <div class="exp-period">Jan 2022 — Mar 2022</div>
+        <span class="exp-badge">Best Intern x2</span>
+      </div>
+      <div class="exp-content">
+        <h3>Best Intern for Two Consecutive Months</h3>
+        <p>
+          Authored 20+ well-researched articles across politics, entertainment, and emerging trends. Awarded best intern position for two consecutive months. Writing fast and writing well, at the same time, is a skill I built here.
+        </p>
+      </div>
+    </div>
+
+  </section>
+</div>
+
+<!-- ==================== IPO WORK ==================== -->
+<div id="page-ipo" class="page">
+
+  <section style="padding-top: 120px;">
+    <p class="section-label">IPO Campaign Work</p>
+    <h2 class="section-title">Advertising That Follows Rules. Every Rule.</h2>
+    <p style="font-size: 1.05rem; color: var(--muted); line-height: 1.8; font-weight: 300; max-width: 680px; margin-bottom: 48px;">
+      IPO advertising is unlike any other category. Every deliverable is governed by SEBI, NSE, and BSE guidelines. Timelines are regulatory. Errors have legal consequences. I've managed this process end-to-end for over 10 offerings at Adfactors, serving as the single point of contact between the company, bankers, legal teams, and the creative unit.
+    </p>
+    <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px;">
+      <button class="btn-primary" onclick="showPage('contact')">Work With Me</button>
+      <button class="btn-outline" onclick="showPage('work')">See All Experience</button>
+    </div>
+  </section>
+
+  <div class="ipo-section">
+    <p class="section-label">Process</p>
+    <h2 class="section-title">How I Manage an IPO Campaign</h2>
+    <p class="ipo-intro">
+      From the first client meeting to the release of statutory ads, each step is tightly sequenced. I have managed this process across digital campaigns and roadshow mandates, coordinating all parties on a common timeline.
+    </p>
+
+    <div class="ipo-steps">
+      <div class="ipo-step highlight">
+        <div class="ipo-step-num">01</div>
+        <div class="ipo-step-title">Meet the Client</div>
+        <div class="ipo-step-desc">Understand the business, sector, and IPO objectives before any brief is written.</div>
+      </div>
+      <div class="ipo-step">
+        <div class="ipo-step-num">02</div>
+        <div class="ipo-step-title">Prepare Brief &amp; Find SMP</div>
+        <div class="ipo-step-desc">Build the single-minded proposition through research, factory visits, and leadership conversations.</div>
+      </div>
+      <div class="ipo-step">
+        <div class="ipo-step-num">03</div>
+        <div class="ipo-step-title">Create Campaign</div>
+        <div class="ipo-step-desc">Campaign concept developed based on the SMP. Direction aligned internally before client review.</div>
+      </div>
+      <div class="ipo-step">
+        <div class="ipo-step-num">04</div>
+        <div class="ipo-step-title">Present to Client</div>
+        <div class="ipo-step-desc">SMP and campaign presented to client stakeholders. Feedback gathered, revisions actioned.</div>
+      </div>
+      <div class="ipo-step highlight">
+        <div class="ipo-step-num">05</div>
+        <div class="ipo-step-title">Decide Campaign Type</div>
+        <div class="ipo-step-desc">Digital campaign or roadshow, or both. The execution path is confirmed at this stage.</div>
+      </div>
+      <div class="ipo-step">
+        <div class="ipo-step-num">06</div>
+        <div class="ipo-step-title">Produce AV Content</div>
+        <div class="ipo-step-desc">Audio-visual content produced under SEBI and NSE guidelines. Legal review built into the process.</div>
+      </div>
+      <div class="ipo-step">
+        <div class="ipo-step-num">07</div>
+        <div class="ipo-step-title">Align All Stakeholders</div>
+        <div class="ipo-step-desc">Bankers, company leadership, and legal teams aligned on messaging and timeline.</div>
+      </div>
+      <div class="ipo-step">
+        <div class="ipo-step-num">08</div>
+        <div class="ipo-step-title">Media Plan &amp; Approvals</div>
+        <div class="ipo-step-desc">Client servicing and internal sign-offs confirmed. Media plan locked before regulatory window opens.</div>
+      </div>
+      <div class="ipo-step highlight">
+        <div class="ipo-step-num">09</div>
+        <div class="ipo-step-title">Release Static Ads on Time</div>
+        <div class="ipo-step-desc">Statutory advertisements released on schedule. Zero-error execution. Listing day collaterals delivered.</div>
+      </div>
+    </div>
+
+    <div class="ipo-clients-bar">
+      <span class="ipo-clients-label">IPO Clients</span>
+      <span class="ipo-client-name">Pine Labs</span>
+      <span class="ipo-client-name">Groww</span>
+      <span class="ipo-client-name">Solar World</span>
+      <span class="ipo-client-name">PhysicsWallah</span>
+      <span class="ipo-client-name">Lenskart Solutions</span>
+      <span class="ipo-client-name">Canara HSBC Life</span>
+      <span class="ipo-client-name">Saatvik Green Energy</span>
+      <span class="ipo-client-name">Urban Company</span>
+      <span class="ipo-client-name">Smartworks Coworking</span>
+    </div>
+  </div>
+
+  <section>
+    <p class="section-label">My Role</p>
+    <h2 class="section-title">What I Handle in an IPO Mandate</h2>
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--rule);">
+      <div style="background: var(--paper); padding: 40px 36px;">
+        <div style="font-family: var(--mono); font-size: 0.68rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px;">Client Servicing</div>
+        <p style="font-size: 0.95rem; color: var(--muted); line-height: 1.75; font-weight: 300;">Single point of contact for the client from brief to delivery. I manage expectations, feedback loops, and timelines while keeping the campaign aligned to the brand's positioning going into the public market.</p>
+      </div>
+      <div style="background: var(--paper); padding: 40px 36px;">
+        <div style="font-family: var(--mono); font-size: 0.68rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px;">Stakeholder Coordination</div>
+        <p style="font-size: 0.95rem; color: var(--muted); line-height: 1.75; font-weight: 300;">I serve as the liaison between bankers, the company's leadership, and its legal team. Keeping three sets of stakeholders aligned on messaging, compliance, and deadlines is the core operational challenge in an IPO mandate.</p>
+      </div>
+      <div style="background: var(--paper); padding: 40px 36px;">
+        <div style="font-family: var(--mono); font-size: 0.68rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px;">Regulatory Delivery</div>
+        <p style="font-size: 0.95rem; color: var(--muted); line-height: 1.75; font-weight: 300;">Statutory advertisements must be published within specific windows under BSE and NSE guidelines. I manage the briefing, production, legal clearance, and publishing of these ads with no margin for error.</p>
+      </div>
+      <div style="background: var(--paper); padding: 40px 36px;">
+        <div style="font-family: var(--mono); font-size: 0.68rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px;">Listing Day Execution</div>
+        <p style="font-size: 0.95rem; color: var(--muted); line-height: 1.75; font-weight: 300;">Listing day collaterals, including digital assets, AV content, and event materials, are produced and delivered ahead of the listing window. The brand's first day as a public company is shaped in part by what we prepare months in advance.</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ==================== FICCI ==================== -->
+<div id="page-ficci" class="page">
+  <section style="padding-top: 120px;">
+    <p class="section-label">FICCI — Event Organisation</p>
+    <h2 class="section-title">The Youngest Organiser. Twice.</h2>
+    <p style="font-size: 1.1rem; color: var(--muted); line-height: 1.8; font-weight: 300; max-width: 680px; margin-bottom: 64px;">
+      I joined FICCI at 19, during a period when most people my age were still looking for internships. I was recognised as the youngest organiser of both GCPMH and Wings India in Asia. Over two stints (2023/2024 and 2026), I managed government communications, high-profile roundtables, and diplomatic protocol at some of India's most significant industry events.
+    </p>
+
+    <div class="ficci-grid">
+      <div class="ficci-card">
+        <div class="ficci-card-num">12,000<span>+</span></div>
+        <div class="ficci-card-label">Delegates at Wings India 2024</div>
+        <div class="ficci-card-desc">One of the largest aviation industry gatherings in Asia, hosted under the FICCI banner with participants from across the globe.</div>
+      </div>
+      <div class="ficci-card">
+        <div class="ficci-card-num">200<span>+</span></div>
+        <div class="ficci-card-label">Speakers Across 16 Roundtables</div>
+        <div class="ficci-card-desc">I directly managed the organisation of all 16 sessions, coordinating speakers, moderators, and session logistics end to end.</div>
+      </div>
+      <div class="ficci-card">
+        <div class="ficci-card-num">7</div>
+        <div class="ficci-card-label">Countries Represented at Inaugural</div>
+        <div class="ficci-card-desc">Ministers from 7 countries and ambassadors from 6 nations attended the Wings India 2024 inaugural ceremony I helped coordinate.</div>
+      </div>
+      <div class="ficci-card">
+        <div class="ficci-card-num">25<span>+</span></div>
+        <div class="ficci-card-label">Aircraft on Static Display</div>
+        <div class="ficci-card-desc">Including the Indian debut of the Air India A350 and the Boeing 777X, which I helped facilitate as part of the event planning team.</div>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 80px;">
+      <div>
+        <p style="font-family: var(--mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 32px; padding-bottom: 12px; border-bottom: 1px solid var(--rule);">What I Did at Wings India 2024</p>
+        <div class="ficci-timeline">
+          <div class="timeline-item">
+            <div class="timeline-item-title">Roundtable and Session Management</div>
+            <div class="timeline-item-body">Managed 16 high-profile roundtables with <strong>200+ speakers</strong>, handling logistics, speaker briefings, and session flow across the event's full duration.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-item-title">Government Communications</div>
+            <div class="timeline-item-body">Drafted invitation papers and talking pointers for <strong>Union Minister Jyotiraditya M. Scindia</strong>, the Joint Secretary of MOCA, and five other ministries including External Affairs, Finance, and Media and Communication.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-item-title">Inaugural Ceremony Coordination</div>
+            <div class="timeline-item-body">Ensured seamless execution of the inaugural ceremony attended by ministers from 7 countries and ambassadors from 6 nations. Managed high-level protocol and cross-functional logistics under ministerial presence.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-item-title">International Delegate Liaison</div>
+            <div class="timeline-item-body">Served as the primary POC for all international delegates and ministers, coordinating their schedules, requirements, and participation throughout the event.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-item-title">Boeing BUILD by IITMIC</div>
+            <div class="timeline-item-body">Planned and conducted Boeing's innovation event engaging young aviation minds and industry innovators, sitting alongside the main Wings India programme.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p style="font-family: var(--mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 32px; padding-bottom: 12px; border-bottom: 1px solid var(--rule);">About the Events</p>
+        <div style="margin-bottom: 40px; padding: 32px; background: var(--white); border-left: 3px solid var(--accent);">
+          <div style="font-family: var(--display); font-size: 1.2rem; font-weight: 700; margin-bottom: 12px;">Wings India 2024</div>
+          <p style="font-size: 0.9rem; color: var(--muted); line-height: 1.75; font-weight: 300;">India's premier civil aviation event, organised jointly by the Ministry of Civil Aviation, FICCI, and the Airports Authority of India. Wings India 2024 was a landmark edition, with the debut of major aircraft and the highest-ever delegate count.</p>
+        </div>
+        <div style="padding: 32px; background: var(--white); border-left: 3px solid var(--ink);">
+          <div style="font-family: var(--display); font-size: 1.2rem; font-weight: 700; margin-bottom: 12px;">GCPMH</div>
+          <p style="font-size: 0.9rem; color: var(--muted); line-height: 1.75; font-weight: 300;">The Global Conference on Petroleum, Mobility, and Hydrogen is one of India's leading forums for the energy and chemicals sectors under FICCI. I supported the organisation of this event across my two FICCI stints, contributing to stakeholder management and session coordination.</p>
+        </div>
+        <div style="margin-top: 32px; padding: 28px; border: 1px solid var(--rule);">
+          <div style="font-family: var(--mono); font-size: 0.68rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px;">Council Work</div>
+          <p style="font-size: 0.88rem; color: var(--muted); line-height: 1.7; font-weight: 300;">Beyond events, I reviewed Council recommendations and provided strategic inputs for potential industry amendments at Council meetings, working alongside ASG-level leadership within FICCI.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ==================== CONTACT ==================== -->
+<div id="page-contact" class="page">
+  <section style="padding-top: 120px;">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">Let's Work Together</h2>
+
+    <div class="contact-section">
+      <div class="contact-left">
+        <p>
+          I'm open to full-time roles in communications, campaign strategy, and client servicing, as well as freelance and consulting opportunities in IPO communication and brand campaign work. If you have a brief, a project, or just want to talk, reach out directly.
+        </p>
+        <div class="contact-detail">
+          <a class="contact-item" href="mailto:Yashvirajput09@gmail.com">
+            <span class="contact-item-label">Email</span>
+            <span class="contact-item-value">Yashvirajput09@gmail.com</span>
+          </a>
+          <a class="contact-item" href="tel:+918700798849">
+            <span class="contact-item-label">Phone</span>
+            <span class="contact-item-value">+91 87007 98849</span>
+          </a>
+          <a class="contact-item" href="https://instagram.com/yashvidograa" target="_blank">
+            <span class="contact-item-label">Instagram</span>
+            <span class="contact-item-value">@yashvidograa</span>
+          </a>
+          <div class="contact-item" style="cursor:default;">
+            <span class="contact-item-label">Location</span>
+            <span class="contact-item-value">India</span>
+          </div>
+        </div>
+
+        <div style="margin-top: 48px;">
+          <p style="font-family: var(--mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px;">What I'm Available For</p>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div style="display: flex; align-items: center; gap: 12px; font-size: 0.92rem; color: var(--muted);">
+              <div style="width: 8px; height: 8px; background: var(--accent); flex-shrink: 0;"></div>
+              Full-time roles in Client Servicing and Brand Communications
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px; font-size: 0.92rem; color: var(--muted);">
+              <div style="width: 8px; height: 8px; background: var(--accent); flex-shrink: 0;"></div>
+              IPO Campaign Management and Regulatory Advertising
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px; font-size: 0.92rem; color: var(--muted);">
+              <div style="width: 8px; height: 8px; background: var(--accent); flex-shrink: 0;"></div>
+              Corporate Communications and Stakeholder Management
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px; font-size: 0.92rem; color: var(--muted);">
+              <div style="width: 8px; height: 8px; background: var(--accent); flex-shrink: 0;"></div>
+              High-Stakes Event Management and Government Liaison
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px; font-size: 0.92rem; color: var(--muted);">
+              <div style="width: 8px; height: 8px; background: var(--accent); flex-shrink: 0;"></div>
+              Social Media Strategy and Content for B2B/B2C Brands
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-right">
+        <h3>References</h3>
+        <p>Available on request. Two senior references listed below.</p>
+        <div class="ref-item">
+          <div class="ref-name">Samidhha Hasija</div>
+          <div class="ref-role">Industry Affairs, Reliance Industries Limited</div>
+          <div class="ref-contact">+91 98686 31734 &nbsp;|&nbsp; samidhahasija@gmail.com</div>
+        </div>
+        <div class="ref-item">
+          <div class="ref-name">Manoj Mehta</div>
+          <div class="ref-role">ASG, Civil Aviation, Chemicals and Petrochemicals, FICCI</div>
+          <div class="ref-contact">+91 98910 98772 &nbsp;|&nbsp; Manoj.mehta@ficci.com</div>
+        </div>
+
+        <div style="margin-top: 48px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.08);">
+          <div style="font-family: var(--mono); font-size: 0.68rem; color: rgba(255,255,255,0.3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px;">Achievements</div>
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div style="padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.06);">
+              <div style="font-size: 0.92rem; font-weight: 500; color: var(--white); margin-bottom: 4px;">Best Journalist Award</div>
+              <div style="font-size: 0.8rem; color: rgba(255,255,255,0.4); line-height: 1.6;">Sansad National Youth Parliament 2021, awarded from 1,000+ participants nationwide.</div>
+            </div>
+            <div style="padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.06);">
+              <div style="font-size: 0.92rem; font-weight: 500; color: var(--white); margin-bottom: 4px;">Youngest FICCI Organiser in Asia</div>
+              <div style="font-size: 0.8rem; color: rgba(255,255,255,0.4); line-height: 1.6;">Recognised twice across GCPMH and Wings India for the same distinction.</div>
+            </div>
+            <div style="padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.06);">
+              <div style="font-size: 0.92rem; font-weight: 500; color: var(--white); margin-bottom: 4px;">Best Intern, Two Consecutive Months</div>
+              <div style="font-size: 0.8rem; color: rgba(255,255,255,0.4); line-height: 1.6;">Awarded at Newsfasto for research and writing quality.</div>
+            </div>
+            <div style="padding: 16px 0;">
+              <div style="font-size: 0.92rem; font-weight: 500; color: var(--white); margin-bottom: 4px;">Published Travel Magazine</div>
+              <div style="font-size: 0.8rem; color: rgba(255,255,255,0.4); line-height: 1.6;">Produced and distributed an original travel magazine in the final semester of graduation, including independent social media management.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-name">Yashvi Rajput</span>
+  <span class="footer-note">Communications &amp; Campaign Strategist &nbsp;|&nbsp; India</span>
+</footer>
+
+<script>
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const target = document.getElementById('page-' + id);
+    if (target) {
+      target.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+</script>
+
+</body>
+</html>
